@@ -1,0 +1,75 @@
+% -------------------------------- identification -----------------------------
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{mjkcv}[2016/04/04]
+% --------------------------------  initial code  -----------------------------
+\RequirePackage{ifthen}
+% -------------------------------- declaration of options ---------------------
+% --------------------------------  execution of options ----------------------
+\ProcessOptions
+% --------------------------------    package loading    ----------------------
+% --------------------------------      main code    --------------------------
+
+ 
+
+
+
+%\usepackage{textcomp}
+%\usepackage[top=0.5cm, bottom=0.5cm, left=0cm, right=0cm]{geometry}
+%\usepackage[usenames,dvipsnames]{xcolor}
+%\usepackage[gen]{eurosym}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% ENVS
+%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\ExperiencesBackgroundColor}{Red}
+\newcommand{\ExperiencesTextColor}{Black}
+\newcommand{\ExperiencesTitleBackgroundColor}{Blue}
+\newcommand{\ExperiencesTitleTextColor}{White}
+\newcommand{\ItemsSidebarBackgroundColor}{Tan}
+\newcommand{\ItemsSidebarTextColor}{Black}
+\newcommand{\ItemsSidebarTitleBackgroundColor}{Blue}
+\newcommand{\ItemsSidebarTitleTextColor}{White}
+
+\makeatletter\newenvironment{bc_box}[2][t]{%
+\begin{lrbox}{\@tempboxa}\begin{minipage}[#1]{#2}}%
+{\end{minipage}\end{lrbox}%
+\colorbox{Tan}{\usebox{\@tempboxa}}%
+}\makeatother%
+\makeatletter\newenvironment{experiences_bc_box}[2][t]{%
+\begin{lrbox}{\@tempboxa}\begin{minipage}[#1]{#2}}%
+{\end{minipage}\end{lrbox}%
+\colorbox{White}{\usebox{\@tempboxa}}%
+}\makeatother%
+
+% Definition of environment job inside environment jobs
+\newenvironment{experience}[6][default]%
+{\noindent\ignorespaces%
+\parbox{\textwidth}{#3 --- #4 #2 \hfill}
+\parbox{\textwidth}{#5 \hfill #6}%
+}
+{\par\noindent\ignorespacesafterend}
+
+% Definition of environment sideitem inside environment sideitems
+\newenvironment{sideitem}[1]%
+{\noindent\ignorespaces%
+\colorbox{\ItemsSidebarTitleBackgroundColor}{%
+% \makebox[7.3cm][l]{\textcolor{white}{#1}}%
+\makebox[7.3cm][l]{\textcolor{\ItemsSidebarTitleTextColor}{#1}}%
+}}
+{\par\noindent\ignorespacesafterend}%
+
+% Definition of blocks experiences, sideitems
+\newenvironment{experiences}{%
+% \begin{bc_box}\ttfamily\color[RGB]{222,222,222}%
+\begin{experiences_bc_box}[t]{12cm}%
+\colorbox{Blue}{\makebox[11.8cm][l]{\textcolor{White}{WORK EXPERIENCE}}}%
+}{%
+\end{experiences_bc_box}%
+}
+
+\newenvironment{sideitems}{%
+% \begin{bc_box}\ttfamily\color[RGB]{222,222,222}%
+\begin{bc_box}[t]{7.5cm}%
+}{%
+\end{bc_box}%
+}%
